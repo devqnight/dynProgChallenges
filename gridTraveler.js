@@ -1,11 +1,35 @@
+const { factorialMemo, factorial } = require("./utils/customMath");
 const {executeTimed} = require("./utils/timer");
 
+//----------------------------------------------
+//
+//  grid traveler : calculate number of paths 
+//                  to go from top left corner 
+//                  to bottom right corner 
+//                  of the grid.
+//
+//----------------------------------------------
+
+
+/**
+ * Calculates the number of different paths going from top left corner of grid to bottom right corner
+ * @param {number} n 
+ * @param {number} m 
+ * @returns {number} nPaths
+ */
 const gridTraveler = function(n, m) {
     if( !n || !m) return 0;
     if( n == 1 && m == 1) return 1;
     return (factorial((n+m)-2) / (factorial(n - 1) * factorial(m - 1))) ;
 };
 
+/**
+ * Calculates the number of different paths going from top left corner of grid to bottom right corner
+ * Uses memoization to optimize, and goes through the grid recursively
+ * @param {number} n 
+ * @param {number} m 
+ * @returns {number} nPaths
+ */
 const gridTraveler2 = function(n, m, memo = {}) {
     const key = "(" + n + "," + m + ")";
     if (key in memo ) return memo[key];
@@ -15,24 +39,21 @@ const gridTraveler2 = function(n, m, memo = {}) {
     return memo[key];
 }
 
+/**
+ * Calculates the number of different paths going from top left corner of grid to bottom right corner
+ * Uses factorial function that uses memoization for the factorials
+ * @param {number} n 
+ * @param {number} m 
+ * @returns {number} nPaths
+ */
 const gridTraveler3 = function(n, m) {
     let facts = {};
     if( !n || !m) return 0;
     if( n == 1 && m == 1) return 1;
-    return (factorial2((n+m)-2, facts) / (factorial2(n - 1, facts) * factorial2(m - 1, facts))) ;
+    return (factorialMemo((n+m)-2, facts) / (factorialMemo(n - 1, facts) * factorialMemo(m - 1, facts))) ;
 };
 
-const factorial = function(n){
-    if( n==0 ) return 1;
-    return n * factorial(n-1);
-}
 
-const factorial2 = function(n, factorials){
-    if (n in factorials) return factorials[n];
-    if( n==0 ) return 1;
-    factorials[n] = n * factorial2(n-1, factorials);
-    return factorials[n];
-}
 
 executeTimed(gridTraveler, [0,1])
 executeTimed(gridTraveler2, [0,1])

@@ -1,5 +1,12 @@
 const {executeTimed} = require("./utils/timer");
 
+//----------------------------------------------
+//
+//  fibonacci : calculates nth fibonacci number
+//
+//----------------------------------------------
+
+
 const fib = function(n) {
 	if(n<=2) return 1;
 	if(n==3) return 2;
