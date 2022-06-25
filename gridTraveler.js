@@ -1,4 +1,4 @@
-const performance = require("perf_hooks").performance;
+const {executeTimed} = require("./utils/timer");
 
 const gridTraveler = function(n, m) {
     if( !n || !m) return 0;
@@ -32,13 +32,6 @@ const factorial2 = function(n, factorials){
     if( n==0 ) return 1;
     factorials[n] = n * factorial2(n-1, factorials);
     return factorials[n];
-}
-
-const executeTimed = (func, args) => {
-    const time0 = performance.now();
-    console.log(func.name, args, " : ", func(...args));
-    const time1 = performance.now();
-    console.log("-- performed in : ", time1-time0 , "ms")
 }
 
 executeTimed(gridTraveler, [0,1])
