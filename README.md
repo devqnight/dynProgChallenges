@@ -19,4 +19,4 @@ Written in Javascript or Python;
 
 ### Author
 
-![https://github.com/Night4dead](https://img.shields.io/badge/Night4dead-2021-%23f514c0)
+![https://github.com/devqnight](https://img.shields.io/badge/Night4dead-2021-%23f514c0)
